@@ -1,0 +1,19 @@
+{
+  "name": "Dentis Iași — Clinică Stomatologică",
+  "short_name": "Dentis Iași",
+  "description": "Cabinet stomatologic în Iași, Str. Crișului nr. 19: stomatologie generală, estetică dentară, ortodonție, endodonție, protetică și stomatologie pentru copii.",
+  "lang": "ro",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FBFAF8",
+  "theme_color": "#121A3A",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
