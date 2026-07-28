@@ -1,4 +1,4 @@
-import { Clock, ExternalLink, Mail, MapPin, Phone } from 'lucide-react'
+import { Clock, ExternalLink, Mail, MapPin, Phone, Share2 } from 'lucide-react'
 import { site } from '../lib/site'
 import { contactFaq } from '../lib/faq'
 import { usePageMeta } from '../lib/seo'
@@ -128,16 +128,19 @@ export default function Contact() {
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-plum-50 text-plum-600">
                     <Mail className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-plum-900/70">
                       E-mail
                     </h3>
                     <a
                       href={`mailto:${site.email}`}
-                      className="-mx-2 mt-0.5 flex min-h-11 items-center whitespace-nowrap rounded-xl px-2 text-sm font-semibold text-plum-950 transition [overflow-wrap:normal] hover:bg-plum-50 hover:text-coral-700 md:text-base"
+                      className="-mx-2 mt-0.5 flex min-h-11 items-center rounded-xl px-2 text-[15px] font-semibold text-plum-950 transition hover:bg-plum-50 hover:text-coral-700"
                     >
-                      {site.email}
+                      <span className="truncate">{site.email}</span>
                     </a>
+                    <p className="mt-1 text-xs leading-relaxed text-plum-900/70">
+                      Scrie-ne oricând — îți răspundem în aceeași zi lucrătoare.
+                    </p>
                   </div>
                 </div>
               </Reveal>
@@ -147,12 +150,27 @@ export default function Contact() {
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-plum-50 text-gold-500">
                     <Clock className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-plum-900/70">
                       Program
                     </h3>
-                    <p className="mt-1.5 text-base font-semibold text-plum-950">{site.schedule}</p>
-                    <p className="mt-1 text-xs text-plum-900/70">{site.scheduleNote}</p>
+                    <dl className="mt-2 space-y-1.5">
+                      {site.hours.map((h) => (
+                        <div key={h.zi} className="flex items-baseline justify-between gap-3">
+                          <dt className="text-sm text-plum-900/70">{h.zi}</dt>
+                          <dd
+                            className={`text-sm font-bold tabular-nums ${
+                              'inchis' in h && h.inchis ? 'text-plum-900/50' : 'text-plum-950'
+                            }`}
+                          >
+                            {h.ore}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <p className="mt-3 border-t border-plum-100 pt-2.5 text-xs leading-relaxed text-plum-900/70">
+                      {site.scheduleNote}
+                    </p>
                   </div>
                 </div>
               </Reveal>
@@ -160,30 +178,35 @@ export default function Contact() {
               <Reveal delay={0.2}>
                 <div className="card-surface flex h-full items-start gap-4 card-pad">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-coral-50 text-coral-600">
-                    <InstagramIcon className="h-5 w-5" />
+                    <Share2 className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-plum-900/70">
-                      Social
+                      Social & mesaje
                     </h3>
-                    <div className="mt-1.5 space-y-1.5">
-                      <a
-                        href={site.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="-mx-2 flex min-h-11 items-center gap-2 rounded-xl px-2 text-sm font-semibold text-plum-900/80 transition hover:bg-plum-50 hover:text-coral-700"
-                      >
-                        <FacebookIcon className="h-4 w-4" /> Dentis Iași
-                      </a>
-                      <a
-                        href={site.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="-mx-2 flex min-h-11 items-center gap-2 rounded-xl px-2 text-sm font-semibold text-plum-900/80 transition hover:bg-plum-50 hover:text-coral-700"
-                      >
-                        <InstagramIcon className="h-4 w-4" /> @cabinet_dentis_iasi
-                      </a>
-                    </div>
+                    {/* Chips-uri compacte: se așază pe un rând și rămân ținte de 44px */}
+                    <ul className="mt-2 flex flex-wrap gap-2">
+                      {[
+                        { href: site.facebook, Icon: FacebookIcon, label: 'Facebook' },
+                        { href: site.instagram, Icon: InstagramIcon, label: 'Instagram' },
+                        { href: site.whatsappHref, Icon: WhatsAppIcon, label: 'WhatsApp' },
+                      ].map(({ href, Icon, label }) => (
+                        <li key={label}>
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-plum-200 px-3.5 text-xs font-bold text-plum-800 transition hover:border-coral-300 hover:bg-coral-50 hover:text-coral-700"
+                          >
+                            <Icon className="h-4 w-4 shrink-0" />
+                            {label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-3 truncate text-xs text-plum-900/70">
+                      @cabinet_dentis_iasi
+                    </p>
                   </div>
                 </div>
               </Reveal>

@@ -26,10 +26,15 @@ export const site = {
   address: 'Strada Crișului nr. 19, Bl. C21, Sc. A, parter, Iași 700694',
   addressShort: 'Str. Crișului nr. 19 — Podu Roș, Iași',
   addressHint: 'La parterul blocului C21, scara A. Fără scări de urcat, acces direct.',
+  /** Varianta pe un rând — pentru bara de sus, footer și banda de CTA. */
   schedule: 'Luni – Vineri: 9:00 – 20:00 · Sâmbătă: 9:00 – 12:00',
-  scheduleWeek: 'Luni – Vineri: 9:00 – 20:00',
-  scheduleSaturday: 'Sâmbătă: 9:00 – 12:00',
-  scheduleNote: 'Duminică închis. Sună-ne pentru confirmarea disponibilității.',
+  /** Varianta pe zile — pentru cardul de program de pe pagina de contact. */
+  hours: [
+    { zi: 'Luni – Vineri', ore: '9:00 – 20:00' },
+    { zi: 'Sâmbătă', ore: '9:00 – 12:00' },
+    { zi: 'Duminică', ore: 'Închis', inchis: true },
+  ],
+  scheduleNote: 'Sună-ne pentru confirmarea disponibilității.',
   rating: '4,8',
   reviewCount: 45,
   yearsActive: 10,
