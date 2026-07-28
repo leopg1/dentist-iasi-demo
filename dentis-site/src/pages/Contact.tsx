@@ -176,38 +176,44 @@ export default function Contact() {
               </Reveal>
 
               <Reveal delay={0.2}>
-                <div className="card-surface flex h-full items-start gap-4 card-pad">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-coral-50 text-coral-600">
-                    <Share2 className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-plum-900/70">
-                      Social & mesaje
-                    </h3>
-                    {/* Chips-uri compacte: se așază pe un rând și rămân ținte de 44px */}
-                    <ul className="mt-2 flex flex-wrap gap-2">
-                      {[
-                        { href: site.facebook, Icon: FacebookIcon, label: 'Facebook' },
-                        { href: site.instagram, Icon: InstagramIcon, label: 'Instagram' },
-                        { href: site.whatsappHref, Icon: WhatsAppIcon, label: 'WhatsApp' },
-                      ].map(({ href, Icon, label }) => (
-                        <li key={label}>
-                          <a
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-plum-200 px-3.5 text-xs font-bold text-plum-800 transition hover:border-coral-300 hover:bg-coral-50 hover:text-coral-700"
-                          >
-                            <Icon className="h-4 w-4 shrink-0" />
-                            {label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-3 truncate text-xs text-plum-900/70">
-                      @cabinet_dentis_iasi
-                    </p>
+                {/* Cardul de social e singurul cu conținut pe toată lățimea: chips-urile
+                    nu încap în coloana îngustă de lângă iconiță (225px pe mobil). */}
+                <div className="card-surface flex h-full flex-col card-pad">
+                  <div className="flex items-center gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-coral-50 text-coral-600">
+                      <Share2 className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-plum-900/70">
+                        Social & mesaje
+                      </h3>
+                      <p className="mt-0.5 truncate text-xs text-plum-900/70">
+                        @cabinet_dentis_iasi
+                      </p>
+                    </div>
                   </div>
+                  {/* Butoane doar cu iconiță: cardul e un sfert de pagină, iar cu
+                      etichete text chips-urile s-ar rupe pe 3 rânduri. */}
+                  <ul className="mt-4 flex flex-wrap gap-2.5">
+                    {[
+                      { href: site.facebook, Icon: FacebookIcon, label: 'Facebook' },
+                      { href: site.instagram, Icon: InstagramIcon, label: 'Instagram' },
+                      { href: site.whatsappHref, Icon: WhatsAppIcon, label: 'WhatsApp' },
+                    ].map(({ href, Icon, label }) => (
+                      <li key={label}>
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${label} — Dentis Iași`}
+                          title={label}
+                          className="flex h-11 w-11 items-center justify-center rounded-full border border-plum-200 text-plum-700 transition hover:border-coral-300 hover:bg-coral-50 hover:text-coral-700"
+                        >
+                          <Icon className="h-5 w-5" />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </Reveal>
             </div>
